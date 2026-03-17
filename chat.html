@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xamagos Assistant</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+<!-- n8n chat-->
+<link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+<script type="module">
+	import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+    createChat({
+	webhookUrl: 'https://mukors.app.n8n.cloud/webhook/e1beddac-70ff-4a5f-9207-b25d6a369b32/chat',
+	webhookConfig: {
+		method: 'POST',
+		headers: {}
+	},
+	target: '#n8n-chat',
+	mode: 'window',
+	chatInputKey: 'chatInput',
+	chatSessionKey: 'sessionId',
+	loadPreviousSession: true,
+	metadata: {},
+	showWelcomeScreen: false,
+	defaultLanguage: 'en',
+	initialMessages: [
+		// 'Xamagos',
+		'Hi there! 👋. How can I assist you today?'
+	],
+	i18n: {
+		en: {
+			title: 'Xamagos',
+			subtitle: "We're here to help you 24/7.",
+			footer: '',
+			getStarted: 'New Conversation',
+			inputPlaceholder: 'Type your question..',
+		},
+	},
+	enableStreaming: false,
+});
+</script>
+
+<style>
+    :root {
+	/* Colors */
+	--chat--color--primary: #e74266;
+	--chat--color--primary-shade-50: #db4061;
+	--chat--color--primary--shade-100: #cf3c5c;
+	--chat--color--secondary: #20b69e;
+	--chat--color-secondary-shade-50: #1ca08a;
+	--chat--color-white: #fff;
+	--chat--color-light: #f2f4f8;
+	--chat--color-light-shade-50: #e6e9f1;
+	--chat--color-light-shade-100: #c2c5cc;
+	--chat--color-medium: #d2d4d9;
+	--chat--color-dark: #101330;
+	--chat--color-disabled: #d2d4d9;
+	--chat--color-typing: #404040;
+
+	/* Base Layout */
+	--chat--spacing: 1rem;
+	--chat--border-radius: 0.85rem;
+	--chat--transition-duration: 0.5s;
+	--chat--font-family:
+		-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,
+		'Helvetica Neue', sans-serif;
+
+	/* Window Dimensions */
+	--chat--window--width: 400px;
+	--chat--window--height: 600px;
+	--chat--window--bottom: var(--chat--spacing);
+	--chat--window--right: var(--chat--spacing);
+	--chat--window--z-index: 9999;
+	--chat--window--border: 1px solid var(--chat--color-light-shade-50);
+	--chat--window--border-radius: var(--chat--border-radius);
+	--chat--window--margin-bottom: var(--chat--spacing);
+
+	/* Header Styles */
+	--chat--header-height: auto;
+	--chat--header--padding: var(--chat--spacing);
+	--chat--header--background: var(--chat--color-dark);
+	--chat--header--color: var(--chat--color-light);
+	--chat--header--border-top: none;
+	--chat--header--border-bottom: none;
+	--chat--header--border-left: none;
+	--chat--header--border-right: none;
+	--chat--heading--font-size: 2em;
+	--chat--subtitle--font-size: inherit;
+	--chat--subtitle--line-height: 1.8;
+
+	/* Message Styles */
+	--chat--message--font-size: 1rem;
+	--chat--message--padding: var(--chat--spacing);
+	--chat--message--border-radius: var(--chat--border-radius);
+	--chat--message-line-height: 1.5;
+	--chat--message--margin-bottom: calc(var(--chat--spacing) * 1);
+	--chat--message--bot--background: var(--chat--color-white);
+	--chat--message--bot--color: var(--chat--color-dark);
+	--chat--message--bot--border: none;
+	--chat--message--user--background: var(--chat--color--secondary);
+	--chat--message--user--color: var(--chat--color-white);
+	--chat--message--user--border: none;
+	--chat--message--pre--background: rgba(0, 0, 0, 0.05);
+	--chat--messages-list--padding: var(--chat--spacing);
+
+	/* Toggle Button */
+	--chat--toggle--size: 64px;
+	--chat--toggle--width: var(--chat--toggle--size);
+	--chat--toggle--height: var(--chat--toggle--size);
+	--chat--toggle--border-radius: 50%;
+	--chat--toggle--background: var(--chat--color--primary);
+	--chat--toggle--hover--background: var(--chat--color--primary-shade-50);
+	--chat--toggle--active--background: var(--chat--color--primary--shade-100);
+	--chat--toggle--color: var(--chat--color-white);
+
+	/* Input Area */
+	--chat--textarea--height: 50px;
+	--chat--textarea--max-height: 30rem;
+	--chat--input--font-size: inherit;
+	--chat--input--border: 0;
+	--chat--input--border-radius: 0;
+	--chat--input--padding: 0.8rem;
+	--chat--input--background: var(--chat--color-white);
+	--chat--input--text-color: initial;
+	--chat--input--line-height: 1.5;
+	--chat--input--placeholder--font-size: var(--chat--input--font-size);
+	--chat--input--border-active: 0;
+	--chat--input--left--panel--width: 2rem;
+
+	/* Button Styles */
+	--chat--button--padding: calc(var(--chat--spacing) * 5 / 8) var(--chat--spacing);
+	--chat--button--border-radius: var(--chat--border-radius);
+	--chat--button--font-size: 1rem;
+	--chat--button--line-height: 1;
+	--chat--button--color--primary: var(--chat--color-light);
+	--chat--button--background--primary: var(--chat--color--secondary);
+	--chat--button--border--primary: none;
+	--chat--button--color--primary--hover: var(--chat--color-light);
+	--chat--button--background--primary--hover: var(--chat--color-secondary-shade-50);
+	--chat--button--border--primary--hover: none;
+	--chat--button--color--primary--disabled: var(--chat--color-light);
+	--chat--button--background--primary--disabled: #81bbb1;
+	--chat--button--border--primary--disabled: none;
+	--chat--button--color--secondary: var(--chat--color-light);
+	--chat--button--background--secondary: hsl(0, 0%, 58%);
+	--chat--button--border--secondary: none;
+	--chat--button--color--secondary--hover: var(--chat--color-light);
+	--chat--button--background--secondary--hover: hsl(0, 0%, 51%);
+	--chat--button--border--secondary--hover: none;
+	--chat--button--color--secondary--disabled: var(--chat--color-light);
+	--chat--button--background--secondary--disabled: hsl(0, 0%, 78%);
+	--chat--button--border--secondary--disabled: none;
+	--chat--close--button--color-hover: var(--chat--color--primary);
+
+	/* Send and File Buttons */
+	--chat--input--send--button--background: var(--chat--color-white);
+	--chat--input--send--button--color: var(--chat--color--secondary);
+	--chat--input--send--button--background-hover: var(--chat--color--primary-shade-50);
+	--chat--input--send--button--color-hover: var(--chat--color-secondary-shade-50);
+	--chat--input--file--button--background: var(--chat--color-white);
+	--chat--input--file--button--color: var(--chat--color--secondary);
+	--chat--input--file--button--background-hover: var(--chat--input--file--button--background);
+	--chat--input--file--button--color-hover: var(--chat--color-secondary-shade-50);
+	--chat--files-spacing: 0.25rem;
+
+	/* Body and Footer */
+	--chat--body--background: var(--chat--color-light);
+	--chat--footer--background: var(--chat--color-light);
+	--chat--footer--color: var(--chat--color-dark);
+}
+</style>
+<!-- end n8n chat-->
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen flex flex-col items-center py-8 px-4">
+    <div class="max-w-4xl w-full text-center mb-8">
+        <h1 class="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-500 mb-3">
+            Xamagos Assistant
+        </h1>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Your intelligent business partner for questions and information
+        </p>
+    </div>
+
+    <div class="max-w-4xl w-full space-y-8">
+        <!-- About Section -->
+        <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+            <h2 class="text-2xl font-semibold text-blue-600 mb-4">About This Service</h2>
+            <p class="text-gray-700 mb-3">
+                The Xamagos Assistant is an AI-powered chatbot designed to help you find information about our company, products, and services. It uses advanced document processing to provide accurate answers based on our latest resources.
+            </p>
+            <p class="text-gray-700">
+                Simply type your question below and receive instant responses. Our AI assistant can also collect your contact information if you're interested in learning more about our offerings.
+            </p>
+        </div>
+
+        <!-- How It Works Section -->
+        <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300">
+            <h2 class="text-2xl font-semibold text-blue-600 mb-4">How It Works</h2>
+            <ul class="space-y-3">
+                <li class="flex items-start">
+                    <span class="text-blue-500 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
+                    <div>
+                        <span class="font-medium">Document Monitoring:</span> Continuously scans our document repository for updates
+                    </div>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-500 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
+                    <div>
+                        <span class="font-medium">Smart Retrieval:</span> Finds relevant information from our knowledge base
+                    </div>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-500 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
+                    <div>
+                        <span class="font-medium">Contextual Responses:</span> Generates helpful answers based on retrieved content
+                    </div>
+                </li>
+                <li class="flex items-start">
+                    <span class="text-blue-500 mr-2 mt-1"><i class="fas fa-check-circle"></i></span>
+                    <div>
+                        <span class="font-medium">Lead Capture:</span> Collects contact information for follow-up when needed
+                    </div>
+                </li>
+            </ul>
+            <p class="text-gray-700 mt-4">
+                All interactions are secure and designed to protect your privacy while providing valuable assistance.
+            </p>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-blue-50 rounded-lg p-6 text-center hover:bg-blue-100 transition-colors">
+                <div class="text-blue-600 text-4xl mb-3">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Instant Answers</h3>
+                <p class="text-gray-600">Get immediate responses to common questions</p>
+            </div>
+            <div class="bg-green-50 rounded-lg p-6 text-center hover:bg-green-100 transition-colors">
+                <div class="text-green-600 text-4xl mb-3">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Knowledge Base</h3>
+                <p class="text-gray-600">Access to up-to-date company information</p>
+            </div>
+            <div class="bg-purple-50 rounded-lg p-6 text-center hover:bg-purple-100 transition-colors">
+                <div class="text-purple-600 text-4xl mb-3">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">Business Support</h3>
+                <p class="text-gray-600">Learn about our products and services</p>
+            </div>
+        </div>
+
+   
+    </div>
+
+    
+</body>
+</html>
